@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git 'https://github.com/yourusername/portfolio-website.git'
+            }
+        }
+
+        stage('Build with Maven') {
+            steps {
+                bat 'mvn clean install'
+            }
+        }
+
+        stage('Run Application') {
+            steps {
+                bat 'mvn spring-boot:run'
+            }
+        }
+    }
+}
